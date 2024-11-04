@@ -124,3 +124,37 @@ button:hover {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
+
+.task {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.task-content input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.task-content span {
+  cursor: pointer;
+}
+
+.task button {
+  background: none;
+  border: none;
+  color: #ff8a65;
+  cursor: pointer;
+  margin-left: auto; /* Place les icônes à l'extrémité droite */
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+}

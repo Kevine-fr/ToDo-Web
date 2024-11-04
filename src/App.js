@@ -85,34 +85,37 @@ function App() {
         <button onClick={addTask}>Ajouter</button>
       </div>
       <div className="task-list">
-        {filteredTasks.map((task) => (
-          <div key={task.id} className={`task ${task.completed ? 'completed' : ''}`}>
-            {editTaskId === task.id ? (
-              <input
-                type="text"
-                value={editTaskInput}
-                onChange={(e) => setEditTaskInput(e.target.value)}
-                onBlur={() => saveTask(task.id)} // Enregistre lors de la perte de focus
-              />
-            ) : (
-              <>
-                <input
-                  type="checkbox"
-                  checked={task.completed}
-                  onChange={() => toggleComplete(task.id)}
-                />
-                <span onDoubleClick={() => editTask(task)}>{task.text}</span>
-              </>
-            )}
-            <button onClick={() => deleteTask(task.id)}>🗑️</button>
-            {editTaskId !== task.id && (
-              <button onClick={() => editTask(task)}>✏️</button>
-            )}
-          </div>
-        ))}
+  {filteredTasks.map((task) => (
+    <div key={task.id} className={`task ${task.completed ? 'completed' : ''}`}>
+      <div className="task-content">
+        <input
+          type="checkbox"
+          checked={task.completed}
+          onChange={() => toggleComplete(task.id)}
+        />
+        {editTaskId === task.id ? (
+          <input
+            type="text"
+            value={editTaskInput}
+            onChange={(e) => setEditTaskInput(e.target.value)}
+            onBlur={() => saveTask(task.id)}
+          />
+        ) : (
+          <span onDoubleClick={() => editTask(task)}>{task.text}</span>
+        )}
       </div>
+        <div className="task-actions">
+        <button onClick={() => deleteTask(task.id)}>🗑️</button>
+        {editTaskId !== task.id && (
+          <button onClick={() => editTask(task)}>✏️</button>
+        )}
+        </div>
+      </div>
+    ))}
+  </div>
+
       <button className="clear-completed" onClick={clearCompleted}>
-        <p className='clear-completed-text'>Vider toutes les taches</p>
+        <p className='clear-completed-text'>Vider les taches</p>
       </button>
     </div>
   );
